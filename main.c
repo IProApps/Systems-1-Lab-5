@@ -67,11 +67,11 @@ int main() {
     printf("qsort: %.3f ms\n", t3 - t2);
     printf("My OPTIMIZED quicksort: %.3f ms\n", t5 - t4);
 
-    int error1 = check_sorted(randomData2, 10000000);
+    int error1 = check_sorted(randomData1, 10000000);
     int error2 = check_sorted(randomData3, 10000000);
 
-    error1 == 0 ? printf("Correctness: FAIL\n") : printf("Correctness: PASS\n");
-    error2 == 0 ? printf("Correctness: FAIL\n") : printf("Correctness: PASS\n");
+    error1 == 0 ? printf("Correctness of my quicksort: FAIL\n") : printf("Correctness: PASS\n");
+    error2 == 0 ? printf("Correctness of my optimized quicksort: FAIL\n") : printf("Correctness: PASS\n");
     
     free(randomData1);
     free(randomData2);
