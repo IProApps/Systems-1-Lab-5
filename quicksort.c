@@ -1,4 +1,4 @@
-#define CUTOFF 32
+#define CUTOFF 8
 
 int *quicksort(int *data, int size);
 void swap(int *a, int *b);
@@ -10,11 +10,12 @@ int median3_index(int *a, int lo, int hi);
 static int part_branchfree_cmov(int *a, int lo, int hi);
 static int part_branchfree_xor(int *a, int lo, int hi);
 
-static inline int part_branchfree(int *a, int lo, int hi) {
-#ifdef __clang__
-    return part_branchfree_cmov(a, lo, hi); // Clang path
+// Use compiler-specific macro set at compile time
+int part_branchfree(int *a, int lo, int hi) {
+#ifdef USE_CMOV
+    return part_branchfree_cmov(a, lo, hi);
 #else
-    return part_branchfree_xor(a, lo, hi);  // GCC path
+    return part_branchfree_xor(a, lo, hi);
 #endif
 }
 
